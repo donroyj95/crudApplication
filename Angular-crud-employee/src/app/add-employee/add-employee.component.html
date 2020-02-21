@@ -1,0 +1,142 @@
+<div class="container">
+  <form name="form" #frm="ngForm"  >
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label >Name</label>
+        <input  type="text"
+                class="form-control"
+                id="validationDefault01"
+                name="name"
+                [(ngModel)]="model.name"
+                #name="ngModel"
+                [ngClass]="{'is_invalid': frmSubmit && name.invalid}"
+
+                required
+        />
+        <div *ngIf=" frmSubmit && name.invalid" class="invalidInput">
+          <div *ngIf="name.errors?.required">Name is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label >Date of Birth</label>
+        <input type="date"
+               class="form-control"
+               id="validationDefault02"
+               name="dob"
+               [(ngModel)]="model.dob"
+               #dob="ngModel"
+               [ngClass]="{'is_invalid': frmSubmit && dob.invalid}"
+
+               required ="Date"
+        />
+        <div *ngIf=" frmSubmit && dob.invalid" class="invalidInput">
+          <div *ngIf="dob.errors?.required">Date of Birth is required</div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label >Email</label>
+        <input type="Email"
+               class="form-control"
+               id="validationDefault03"
+               name="email"
+               [(ngModel)]="model.email"
+               #email="ngModel"
+               [ngClass]="{'is_invalid':frmSubmit && email.invalid}"
+
+               required email
+        />
+        <div *ngIf="frmSubmit && email.invalid" class="invalidInput">
+          <div *ngIf="email.errors?.required">Email is required</div>
+          <div *ngIf="email.errors?.email">Email is not valid</div>
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select Skills
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+          <div *ngFor="let skill of skills">
+            <a class="dropdown-item" (click)="addSkills(skill.skill,skill.skillId)">{{skill.skill}}</a>
+          </div>
+        </div>
+
+      </div>
+      <br><br>
+      <div class="form-row">
+        <h5 >Selected Skills</h5>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Skills
+
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let skill of skillTemp; index as i;">
+            <!-- <th scope="row">{{i+1}}</th> -->
+            <td>{{skill}}</td>
+            <td>
+<!--              <i class="material-icons " id="bucket" (click)="deleteSkills(skill)" >-->
+<!--                DEL-->
+<!--              </i>-->
+              <button type="button" class="btn btn-warning" (click)="deleteSkills(skill)">Delete</button>
+            </td>
+
+
+          </tr>
+
+          </tbody>
+        </table>
+
+
+      </div>
+
+
+
+
+    </div>
+    <div class="form-group">
+
+    </div>
+    <button class="btn btn-success" *ngIf="btnvisibility" (click)="frm.form.valid && sendAdd() || (frmSubmit=true)">Save</button>
+    <button class="btn btn-success" *ngIf="!btnvisibility" (click)="frm.form.valid && onUpdate() || (frmSubmit=true) ">Update</button>
+
+
+<!--    <button class="btn btn-primary" type="submit" >Submit form</button>-->
+  </form>
+</div>
+
+
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Input">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Textarea"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select">
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+
+

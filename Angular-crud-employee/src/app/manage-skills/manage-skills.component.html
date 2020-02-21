@@ -1,0 +1,84 @@
+<div class="card" xmlns:text-transform="http://www.w3.org/1999/xhtml">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Skills</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2">
+        <a class="text-success" >
+
+<!--          <mdb-icon fas icon="plus" size="2x"></mdb-icon>-->
+      <form #frm="ngForm">
+          <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+               aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add Skill</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <label data-error="wrong" data-success="right" for="form3">Skill Name</label>
+          <input type="text" id="form3"  class="form-control validate lowercase" name="skill" [(ngModel)]="model.skill">
+
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-indigo" (click)="frm.form.valid && sendAdd()">Save <i class="fas fa-paper-plane-o ml-1"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+
+
+<div class="text-center">
+  <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionForm">Add Skill</a>
+</div>
+        </a>
+      </span>
+      <table class="table" >
+        <tr>
+<!--          <th class="text-center">#</th>-->
+          <th scope="col">Skill Id</th>
+          <th scope="col">Skill</th>
+
+        </tr>
+        <tr *ngFor="let skill of skills; let id = index">
+          <td>
+            <span  name ="skillId"   >{{skill.skillId}}</span>
+          </td>
+          <td>
+            <span contenteditable="true"   (blur)="updateList(skill.skillId, 'skill', $event)" >{{skill.skill}}</span>
+          </td>
+<!--          <td>-->
+<!--            <span class="table-up">-->
+<!--              <a class="indigo-text">-->
+<!--                <mdb-icon fas icon="long-arrow-alt-up"></mdb-icon>-->
+<!--              </a>-->
+<!--            </span>-->
+<!--            <span class="table-down">-->
+<!--              <a class="indigo-text">-->
+<!--                <mdb-icon fas icon="long-arrow-alt-down"></mdb-icon>-->
+<!--              </a>-->
+<!--            </span>-->
+<!--          </td>-->
+          <td>
+            <span class="table-remove">
+              <button type="button" class="btn btn-danger" (click)="remove(skill.skillId)">Del</button>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Editable table -->
+
+<!--(keyup)="changeValue(id, 'skill', $event)" (blur)="updateList(id, 'skill', $event)"-->

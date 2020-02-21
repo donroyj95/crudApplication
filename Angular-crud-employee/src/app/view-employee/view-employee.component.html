@@ -1,0 +1,40 @@
+<table class="table">
+  <thead >
+  <tr>
+    <th scope="col">#</th>
+    <th>id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Date Of Birth</th>
+    <th scope="col">Email</th>
+    <th scope="col">Skills</th>
+
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let emp of employeeDto;let i=index">
+    <th scope="row">{{i+1}}</th>
+    <td>{{emp.id}}</td>
+    <td>{{emp.name}}</td>
+    <td>{{emp.dob}}</td>
+    <td>{{emp.email}}</td>
+    <td >
+      <table class="table table-nostriped" *ngFor="let ski of emp.skillId; ">
+        <tr>
+          <td>{{mapSkill.get(ski)}}</td>
+        </tr>
+      </table>
+
+    </td>
+    <td><button (click)="editEmp(emp)"  type="button" class="btn btn-info">Update</button></td>
+<!--    <a routerLink="/add"><button class="btn btn-success pull-right" > Add Customer</button></a>-->
+    <td><button type="button" class="btn btn-warning" (click)="deleteEmployee(emp.id)">Delete</button></td>
+
+  </tr>
+  </tbody>
+</table>
+
+
+
+
+
